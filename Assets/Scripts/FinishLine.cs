@@ -12,12 +12,12 @@ public class FinishLine : MonoBehaviour
         if(collision.gameObject.layer == layerIndex)
         {
             finishEffect.Play();
-            Invoke("RestartGame", delay);
+            Invoke("PassNextLevel", delay);
         }
     }
 
-    private void RestartGame()
+    private void PassNextLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
