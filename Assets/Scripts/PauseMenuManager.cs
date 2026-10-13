@@ -4,8 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public GameObject pauseMenuCanvas;
-    public GameObject charecterSelectCanvas;
+    [SerializeField] GameObject pauseMenuCanvas;
+    [SerializeField] GameObject charecterSelectCanvas;
+    [SerializeField] GameObject levelSelectLayout;
+    [SerializeField] GameObject mainLayout;
+
     private bool isPaused = false;
     
 
@@ -27,6 +30,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Resume()
     {
+        CloseLevelSelect();
         pauseMenuCanvas.SetActive(false);
         if(charecterSelectCanvas.activeSelf == false)
         {
@@ -46,5 +50,17 @@ public class PauseMenuManager : MonoBehaviour
     { 
         // Oyunu tekrar başlat
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex );    
+    }
+
+    public void OpenLevelSelect()
+    {
+        levelSelectLayout.SetActive(true);
+        mainLayout.SetActive(false); 
+    }
+    
+    public void CloseLevelSelect()
+    {
+        levelSelectLayout.SetActive(false);
+        mainLayout.SetActive(true); 
     }
 }
