@@ -18,6 +18,10 @@ public class FinishLine : MonoBehaviour
 
     private void PassNextLevel()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SceneManager.LoadScene(1);  
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

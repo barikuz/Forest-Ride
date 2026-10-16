@@ -22,14 +22,14 @@ public class CharacterSelectManager : MonoBehaviour
     public void ChooseYellow()
     {
         yellowBike.SetActive(true);
+        redBike.SetActive(false);
         BeginGame();
     }
 
     public void ChooseRed()
     {
         redBike.SetActive(true);
+        yellowBike.SetActive(false);
         BeginGame();
     }
-
-
 }

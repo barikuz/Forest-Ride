@@ -49,7 +49,7 @@ public class PauseMenuManager : MonoBehaviour
     public void Restart()
     { 
         // Oyunu tekrar başlat
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex );    
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
     }
 
     public void OpenLevelSelect()
@@ -62,5 +62,20 @@ public class PauseMenuManager : MonoBehaviour
     {
         levelSelectLayout.SetActive(false);
         mainLayout.SetActive(true); 
+    }
+
+    public void passLevel1(){
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f; 
+    }
+
+    public void passLevel2(){
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+    }
+
+    public void openBikeSelect(){
+        charecterSelectCanvas.SetActive(true);
+        pauseMenuCanvas.SetActive(false);
     }
 }
