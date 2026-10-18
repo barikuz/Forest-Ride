@@ -22,6 +22,9 @@ public class FinishLine : MonoBehaviour
         {
             SceneManager.LoadScene(1);  
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

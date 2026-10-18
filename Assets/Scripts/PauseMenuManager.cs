@@ -6,8 +6,11 @@ public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuCanvas;
     [SerializeField] GameObject charecterSelectCanvas;
+    [SerializeField] GameObject scoreCanvas;
+
     [SerializeField] GameObject levelSelectLayout;
     [SerializeField] GameObject mainLayout;
+
 
     private bool isPaused = false;
     
@@ -48,8 +51,11 @@ public class PauseMenuManager : MonoBehaviour
     
     public void Restart()
     { 
-        // Oyunu tekrar başlat
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(SceneManager.GetActiveScene().buildIndex > 0)
+        {
+            Time.timeScale = 1f;
+        }    
     }
 
     public void OpenLevelSelect()
@@ -75,6 +81,7 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void openBikeSelect(){
+        scoreCanvas.SetActive(false);
         charecterSelectCanvas.SetActive(true);
         pauseMenuCanvas.SetActive(false);
     }
