@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     float previousRotation;
     float totalRotation;
     int activePowerUps = 0;
+
+    // States from mobile buttons
+    private bool isRotatingLeft = false;
+    private bool isRotatingRight = false;
+    private bool isBoosting = false;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,27 +53,37 @@ public class PlayerController : MonoBehaviour
 
     void RotatePlayer()
     {
-        if(moveVector.x < 0)
+        if(moveVector.x < 0 || isRotatingLeft)
         {
-            rigidbody2D.AddTorque(torqueAmount);
+            AddTorque(torqueAmount);
         }
 
-        else if(moveVector.x > 0)
+        else if(moveVector.x > 0 || isRotatingRight)
         {
-            rigidbody2D.AddTorque(-torqueAmount);
+            AddTorque(-torqueAmount);
         }
     }
 
+    public void AddTorque(float amount)
+    {
+        rigidbody2D.AddTorque(amount);
+    }   
+
     void BoostPlayer()
     {
-        if (moveVector.y > 0)
+        if (moveVector.y > 0 || isBoosting)
         {
-            surfaceEffector2D.speed = boostSpeed;
+            SetSpeed(boostSpeed);
         }
         else
         {
-            surfaceEffector2D.speed = baseSpeed;
+            SetSpeed(baseSpeed);
         }
+    }
+
+    public void SetSpeed(float amount)
+    {
+        surfaceEffector2D.speed = amount;
     }
 
     public void DisableControls()
@@ -124,4 +139,16 @@ public class PlayerController : MonoBehaviour
             torqueAmount -= powerUp.GetValueChange();
         }
     }
+
+    
+    // --- Functions to be called from UI buttons for mobile controls ---
+
+    public void OnPressRotateLeft() { isRotatingLeft = true; }
+    public void OnReleaseRotateLeft() { isRotatingLeft = false; }
+
+    public void OnPressRotateRight() { isRotatingRight = true; }
+    public void OnReleaseRotateRight() { isRotatingRight = false; }
+
+    public void OnPressBoost() { isBoosting = true; }
+    public void OnReleaseBoost() { isBoosting = false; }
 }
