@@ -6623,7 +6623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   scoreManager: {fileID: 382232038}
   powerUpParticles: {fileID: 1147178826}
-  torqueAmount: 10
+  torqueAmount: 100
   baseSpeed: 13
   boostSpeed: 20
   canControl: 1
